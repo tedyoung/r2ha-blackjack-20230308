@@ -10,6 +10,7 @@ public class Hand {
     private final List<Card> cards = new ArrayList<>();
 
     public Hand(List<Card> cards) {
+        // must have either zero cards, or 2+ cards
         this.cards.addAll(cards);
     }
 
