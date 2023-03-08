@@ -1,10 +1,5 @@
 package com.jitterted.ebp.blackjack.domain;
 
-import com.jitterted.ebp.blackjack.adapter.in.console.ConsoleCard;
-import com.jitterted.ebp.blackjack.adapter.in.console.ConsoleHand;
-
-import static org.fusesource.jansi.Ansi.ansi;
-
 public class Game {
 
     private final Deck deck;
@@ -52,30 +47,19 @@ public class Game {
         }
     }
 
-    public void displayGameState() {
-        System.out.print(ansi().eraseScreen().cursor(1, 1));
-        System.out.println("Dealer has: ");
-        System.out.println(ConsoleHand.displayFaceUpCard(dealerHand));
-
-        // second card is the hole card, which is hidden, or "face down"
-        ConsoleCard.displayBackOfCard();
-
-        System.out.println();
-        System.out.println("Player has: ");
-        System.out.println(ConsoleHand.cardsAsString(playerHand));
-        System.out.println(" (" + playerHand.value() + ")");
+    // Can't return Hand (violates Integrity and Point-In-Time rules for Queries)
+    // (as well as being misleading to the caller)
+    // Instead, we can return:
+    // 1. Copy of Hand: misleading to the consumer/client
+    // 1a. "Read Only" Interface: HandReadOnly (only query methods)
+    // 2. HandView (Value Object): query methods for faceUpCard(), cards(), and value()
+    // --> Not a DTO
+    public Hand playerHand() {
+        return playerHand;
     }
 
-    public void displayFinalGameState() {
-        System.out.print(ansi().eraseScreen().cursor(1, 1));
-        System.out.println("Dealer has: ");
-        System.out.println(ConsoleHand.cardsAsString(dealerHand));
-        System.out.println(" (" + dealerHand.value() + ")");
-
-        System.out.println();
-        System.out.println("Player has: ");
-        System.out.println(ConsoleHand.cardsAsString(playerHand));
-        System.out.println(" (" + playerHand.value() + ")");
+    public Hand dealerHand() {
+        return dealerHand;
     }
 
     public void playerHits() {
