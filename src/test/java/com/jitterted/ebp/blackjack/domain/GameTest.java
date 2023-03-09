@@ -52,4 +52,19 @@ class GameTest {
         assertThat(game.determineOutcome())
                 .isEqualByComparingTo(GameOutcome.PLAYER_WINS_BLACKJACK);
     }
+
+    @Test
+    void playerWithHandValueOf21And3CardsIsNotBlackjack() {
+        Deck twentyOneWithThreeCards = new StubDeck(Rank.EIGHT, Rank.NINE,
+                                                    Rank.THREE, Rank.EIGHT,
+                                                    Rank.TEN);
+        Game game = new Game(twentyOneWithThreeCards);
+
+        game.initialDeal();
+        game.playerHits();
+        game.dealerTurn();
+
+        assertThat(game.determineOutcome())
+                .isEqualByComparingTo(GameOutcome.PLAYER_BEAT_DEALER);
+    }
 }
