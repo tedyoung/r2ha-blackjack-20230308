@@ -33,5 +33,11 @@ public class WebConfigurationTest {
                .andExpect(status().isOk());
     }
 
+    @Test
+    public void postToHitEndpointIsRedirection() throws Exception {
+        mockMvc.perform(post("/hit"))
+               .andExpect(status().is3xxRedirection());
+    }
+
 
 }
