@@ -18,6 +18,11 @@ public class StubDeck implements Deck {
         this.size = cards.size();
     }
 
+    public StubDeck(List<Card> cards) {
+        this.iterator = cards.listIterator();
+        this.size = cards.size();
+    }
+
     static Deck playerHitsAndGoesBust() {
         return new StubDeck(Rank.TEN, Rank.EIGHT,
                             Rank.QUEEN, Rank.JACK,
