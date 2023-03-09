@@ -105,6 +105,8 @@ class BlackjackControllerTest {
 
         assertThat(redirectPage)
                 .isEqualTo("redirect:/done");
+        assertThat(game.isPlayerDone())
+                .isTrue();
     }
 
 }
