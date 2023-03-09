@@ -18,6 +18,22 @@ public class StubDeck implements Deck {
         this.size = cards.size();
     }
 
+    static Deck playerHitsAndGoesBust() {
+        return new StubDeck(Rank.TEN, Rank.EIGHT,
+                            Rank.QUEEN, Rank.JACK,
+                            Rank.THREE);
+    }
+
+    static Deck playerStandsAndBeatsDealer() {
+        return new StubDeck(Rank.TEN, Rank.EIGHT,
+                            Rank.QUEEN, Rank.JACK);
+    }
+
+    static Deck playerPushesWithDealer() {
+        return new StubDeck(Rank.TEN, Rank.QUEEN,
+                            Rank.NINE, Rank.NINE);
+    }
+
     @Override
     public Card draw() {
         return iterator.next();

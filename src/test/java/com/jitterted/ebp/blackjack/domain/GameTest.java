@@ -8,9 +8,7 @@ class GameTest {
 
     @Test
     void playerHitsAndGoesBustThenOutcomeIsPlayerLoses() {
-        Game game = new Game(new StubDeck(Rank.TEN, Rank.EIGHT,
-                                          Rank.QUEEN, Rank.JACK,
-                                          Rank.THREE));
+        Game game = new Game(StubDeck.playerHitsAndGoesBust());
         game.initialDeal();
 
         game.playerHits();
@@ -21,9 +19,7 @@ class GameTest {
 
     @Test
     void playerDealtBetterHandThanDealerAndStandsThenPlayerBeatsDealer() {
-        Deck playerStandsAndBeatsDealer = new StubDeck(Rank.TEN, Rank.EIGHT,
-                                                       Rank.QUEEN, Rank.JACK);
-        Game game = new Game(playerStandsAndBeatsDealer);
+        Game game = new Game(StubDeck.playerStandsAndBeatsDealer());
         game.initialDeal();
 
         game.playerStands();
@@ -35,8 +31,7 @@ class GameTest {
 
     @Test
     void playerDealtHandWithSameValueAsDealerThenPlayerPushesDealer() {
-        Game game = new Game(new StubDeck(Rank.TEN, Rank.QUEEN,
-                                          Rank.NINE, Rank.NINE));
+        Game game = new Game(StubDeck.playerPushesWithDealer());
         game.initialDeal();
 
         game.playerStands();
