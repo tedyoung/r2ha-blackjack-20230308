@@ -45,6 +45,11 @@ public class StubDeck implements Deck {
                             Rank.NINE, Rank.NINE);
     }
 
+    public static Deck playerDealtBlackjack() {
+        return new StubDeck(Rank.ACE, Rank.NINE,
+                            Rank.JACK, Rank.EIGHT);
+    }
+
     @Override
     public Card draw() {
         return iterator.next();
