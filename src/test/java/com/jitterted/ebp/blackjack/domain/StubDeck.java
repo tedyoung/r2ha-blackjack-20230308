@@ -40,6 +40,12 @@ public class StubDeck implements Deck {
                             Rank.QUEEN, Rank.JACK);
     }
 
+
+    public static Deck playerNotDealtBlackjack() {
+        return new StubDeck(Rank.TEN, Rank.EIGHT,
+                            Rank.QUEEN, Rank.JACK);
+    }
+
     public static Deck playerPushesWithDealer() {
         return new StubDeck(Rank.TEN, Rank.QUEEN,
                             Rank.NINE, Rank.NINE);
