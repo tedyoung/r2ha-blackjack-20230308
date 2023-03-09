@@ -33,4 +33,18 @@ class GameTest {
                 .isEqualTo("You beat the Dealer! 💵");
     }
 
+    @Test
+    void playerDealtHandWithSameValueAsDealerThenPlayerPushesDealer() {
+        Game game = new Game(new StubDeck(Rank.TEN, Rank.QUEEN,
+                                          Rank.NINE, Rank.NINE));
+        game.initialDeal();
+
+        game.playerStands();
+        game.dealerTurn();
+
+        assertThat(game.determineOutcome())
+                .isEqualTo("Push: Nobody wins, we'll call it even.");
+    }
+
+
 }
